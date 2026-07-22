@@ -1,0 +1,1102 @@
+/* ============================================================
+ *  博客全局样式表 —— 统一暖橙色主题，所有页面共用
+ * ============================================================ */
+
+/* ---------- 1. 页面基座 ---------- */
+/* Grid 布局：两端 1fr 平衡 + zuolan(350px) + 间隙(35px) + youlan(自适应≤800px)。
+   永不换行——缩放时两侧等距留白，zuolan 和 youlan 始终并排居中 */
+body {
+	display: grid;
+	grid-template-columns: 1fr 5px 350px 35px minmax(300px, 800px) 1fr;
+	background-color: #FFFAEC;
+	margin: 10px 5px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: #FDC06B;
+	border-radius: 15px;
+	overflow-x: hidden;
+}
+
+/* header / footer / #zhuLan：横跨所有列，消除浏览器默认边距 */
+header, footer, #zhuLan {
+	grid-column: 1 / -1;
+}
+
+header {
+	margin: 0;
+	padding: 0;
+}
+
+/* ---------- 2. 导航栏 ---------- */
+nav {
+	width: 100%;
+	padding: 10px 0;
+	border-radius: 10px;
+	background-color: #f9cd90;
+	box-sizing: border-box;
+}
+
+/* 导航列表容器：去掉默认圆点，左缩进 */
+ul.nav {
+	margin: 0;
+	padding-left: 130px;
+	list-style: none;
+}
+
+/* 导航列表项：横向排列，相邻项之间 1px 分隔线，边缘无缝 */
+li.nav {
+	padding: 0 20px;
+	display: inline-block;
+	border: none;
+}
+
+li.nav + li.nav {
+	border-left: 1px solid #D79F52;
+}
+
+/* 全局链接样式 */
+a {
+	text-decoration: none;
+	color: #333333;
+}
+
+a:hover {
+	color: #D79F52;
+}
+
+/* ---------- 3. 左侧 sticky 侧边栏 ---------- */
+/* 首页放公告栏，文章页放 TOC 目录 */
+#zuolan {
+	grid-column: 3;
+	grid-row: 2;
+	position: sticky;
+	top: 15px;
+	width: 350px;
+	height: 560px;
+	margin-top: 10px;
+	border-radius: 15px;
+	background-color: #f9cd90;
+	box-sizing: border-box;
+	overflow: hidden;
+	box-shadow: inset 0 0 0 6px #f9cd90, inset 0 0 0 7px #6BA5A5;
+}
+
+/* 侧边栏头部标题：“公告栏” / “目 录” */
+.ceLanBiaoTou {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+	padding: 15px 0 10px;
+	border-bottom: 2px solid #D79F52;
+	margin: 0 20px;
+	position: relative;
+}
+
+.ceLanBiaoTou::after {
+	content: '';
+	display: block;
+	width: 50%;
+	height: 3px;
+	margin: 5px auto 0;
+	background: repeating-linear-gradient(
+		90deg,
+		#6BA5A5 0, #6BA5A5 3px,
+		transparent 3px, transparent 7px
+	);
+	border-radius: 2px;
+}
+
+/* 公告列表 */
+.gongGaoList {
+	list-style: none;
+	padding: 0 20px;
+	margin: 10px 0;
+}
+
+/* 公告条目 */
+.gongGaoItem {
+	padding: 10px 0;
+	border-bottom: 1px dashed #e8c98a;
+}
+
+/* 交替条目：虚线换色 */
+.gongGaoItem:nth-child(even) {
+	border-bottom-style: dotted;
+	border-bottom-color: #c9b870;
+}
+
+.gongGaoItem a {
+	display: block;
+	color: #555;
+	font-size: 14px;
+	text-decoration: none;
+	line-height: 1.6;
+	transition: color 0.2s;
+}
+
+.gongGaoItem a:hover {
+	color: #D79F52;
+}
+
+/* 博主简介 */
+.ceLanJianJie {
+	text-align: center;
+	padding: 15px 20px;
+	margin: 15px 20px 0;
+	border-top: 2px solid #D79F52;
+	position: relative;
+}
+
+.ceLanJianJie::before {
+	content: '';
+	display: block;
+	width: 50%;
+	height: 3px;
+	margin: 0 auto 8px;
+	background: repeating-linear-gradient(
+		90deg,
+		#6BA5A5 0, #6BA5A5 3px,
+		transparent 3px, transparent 7px
+	);
+	border-radius: 2px;
+}
+
+.ceLanJianJie p {
+	font-size: 13px;
+	color: #666;
+	line-height: 1.8;
+	margin: 0;
+}
+
+.ceLanJianJie p:first-child {
+	font-size: 15px;
+	font-weight: bold;
+	color: #333;
+}
+
+/* ---------- 4. 右侧内容主区域 ---------- */
+/* 首页放文章卡片 + 分页，文章页放正文。
+   放在 grid 第 5 列（自适应列，宽屏≤800px，缩放时自动伸缩） */
+#youlan {
+	text-align: center;
+	grid-column: 5;
+	grid-row: 2;
+	margin-top: 14px;
+	border-radius: 10px;
+	background-color: #FFE7C5;
+	padding: 5px;
+	padding-bottom: 60px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #FDC06B;
+	box-sizing: border-box;
+}
+
+/* ---------- 搜索栏 ---------- */
+.souSuoRongQi {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin: 15px 50px 5px;
+}
+
+/* 输入框包装器：absolute 定位 × 按钮的基准 */
+.souSuoShuRuBox {
+	position: relative;
+	flex: 1;
+	max-width: 460px;
+}
+
+.souSuoShuRu {
+	width: 100%;
+	padding: 9px 34px 9px 14px;
+	border: 2px solid #e0c88e;
+	border-radius: 20px;
+	background-color: #FFFAEC;
+	font-size: 14px;
+	color: #333;
+	outline: none;
+	transition: border-color 0.2s;
+	box-sizing: border-box;
+}
+
+.souSuoShuRu:focus {
+	border-color: #D79F52;
+}
+
+.souSuoShuRu::placeholder {
+	color: #bbb;
+}
+
+/* 清空 × 按钮（覆盖在输入框右端） */
+.souSuoQingChu {
+	position: absolute;
+	right: 6px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-size: 18px;
+	color: #bbb;
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0 6px;
+	line-height: 1;
+	display: none;
+	transition: color 0.2s;
+}
+
+.souSuoQingChu:hover {
+	color: #999;
+}
+
+.souSuoQingChu--keJian {
+	display: block;
+}
+
+/* 搜索按钮 */
+.souSuoAnNiu {
+	width: 38px;
+	height: 38px;
+	border: 2px solid #e0c88e;
+	border-radius: 50%;
+	background-color: #f9cd90;
+	font-size: 16px;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.2s;
+	flex-shrink: 0;
+	padding: 0;
+}
+
+.souSuoAnNiu:hover {
+	background-color: #D79F52;
+	border-color: #D79F52;
+	box-shadow: 0 2px 8px rgba(215, 159, 82, 0.35);
+}
+
+/* 搜索候选人下拉浮层 */
+.souSuoXiaLa {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	margin-top: 4px;
+	padding: 6px 0;
+	list-style: none;
+	background: #FFFAEC;
+	border: 1px solid #e0c88e;
+	border-radius: 10px;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+	z-index: 100;
+	max-height: 210px;
+	overflow-y: auto;
+	overflow-x: auto;
+}
+
+.souSuoXiaLa--keJian {
+	display: block;
+}
+
+/* 下拉条目 */
+.souSuoHouXuan {
+	padding: 8px 14px;
+	font-size: 14px;
+	color: #555;
+	cursor: pointer;
+	transition: background-color 0.15s;
+	white-space: nowrap;
+}
+
+.souSuoHouXuan:hover,
+.souSuoHouXuan--xuanZhong {
+	background-color: #ffe7c5;
+}
+
+/* 下拉文章标题 */
+.souSuoBiaoTi {
+	color: #333;
+	font-weight: 700;
+}
+
+/* 下拉上下文摘要 */
+.souSuoShangXiaWen {
+	color: #999;
+	font-size: 12px;
+	margin-left: 4px;
+}
+
+/* 匹配高亮文本 */
+.souSuoGaoLiang {
+	color: #D79F52;
+	font-weight: bold;
+}
+
+/* ---------- 5. 底部版权 ---------- */
+footer {
+	text-align: center;
+	padding-top: 2%;
+}
+
+/* ---------- 6. 文章卡片（首页） ---------- */
+.wenZhang {
+	margin-top: 30px;
+	margin-left: 50px;
+	margin-right: 50px;
+	min-height: 140px;
+	border-radius: 15px;
+	background-color: #FFFAEC;
+	border-color: #D79F52;
+	border-width: 3px;
+	border-style: outset;  /* 立体凸起边框效果 */
+	overflow: hidden;      /* 防止圆角被内容溢出破坏 */
+}
+
+/* ---------- 7. 分页组件 ---------- */
+/* 分页按钮容器 */
+.fenYeRongQi {
+	text-align: center;
+	margin-top: 30px;
+	padding: 10px 0 20px 0;
+}
+
+/* 分页按钮通用样式 */
+.fenYeBtn {
+	display: inline-block;
+	margin: 0 5px;
+	padding: 8px 14px;
+	border: 2px solid #D79F52;
+	border-radius: 8px;
+	background-color: #FFFAEC;
+	color: #333;
+	cursor: pointer;
+	font-size: 14px;
+	text-decoration: none;
+	transition: all 0.2s ease;  /* 悬停过渡动画 */
+}
+
+.fenYeBtn:hover {
+	background-color: #f9cd90;
+}
+
+/* 当前页码高亮 */
+.fenYeBtnActive {
+	background-color: #f9cd90;
+	font-weight: bold;
+}
+
+/* 禁用状态（如第一页的"上一页"） */
+.fenYeBtn:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+/* 页码跳转输入框 */
+.fenYeTiaoZhuan {
+	width: 42px;
+	padding: 4px 6px;
+	border: 1px solid #e0c88e;
+	border-radius: 8px;
+	background-color: #FFFAEC;
+	font-size: 13px;
+	color: #333;
+	text-align: center;
+	outline: none;
+	transition: border-color 0.2s;
+	-moz-appearance: textfield;
+}
+
+.fenYeTiaoZhuan:focus {
+	border-color: #D79F52;
+}
+
+/* 隐藏 number 输入框的上下箭头（Chrome / Safari） */
+.fenYeTiaoZhuan::-webkit-inner-spin-button,
+.fenYeTiaoZhuan::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* ---------- 8. 文章详情页 ---------- */
+/* 文章正文容器 */
+.articleNeiRong {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px 40px;
+	text-align: left;
+}
+
+/* 文章标题 */
+.articleNeiRong h1 {
+	font-size: 26px;
+	color: #333;
+	text-align: center;
+	margin-bottom: 10px;
+}
+
+/* 日期 / 分类 元信息行 */
+.articleMeta {
+	text-align: center;
+	margin-bottom: 30px;
+	font-size: 13px;
+	color: #999;
+}
+
+.articleMeta span {
+	margin: 0 10px;
+}
+
+/* 文章二级标题（章节标题）：下划线分隔 */
+.articleNeiRong h2 {
+	font-size: 20px;
+	color: #333;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	padding-bottom: 8px;
+	border-bottom: 2px solid #f9cd90;
+}
+
+/* 文章正文段落：首行缩进两字 */
+.articleNeiRong p {
+	font-size: 16px;
+	color: #444;
+	line-height: 1.9;
+	text-indent: 2em;
+	margin-bottom: 15px;
+}
+
+/* ---------- 9. TOC 侧边目录（文章页左侧） ---------- */
+/* 目录头部标题 */
+.muLuBiaoTou {
+	text-align: center;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+	padding: 15px 0 10px 0;
+	border-bottom: 2px solid #D79F52;
+	margin: 0 20px 10px 20px;
+}
+
+/* 目录列表容器 */
+.toc-list {
+	list-style: none;
+	padding: 0 20px;
+	margin: 0;
+	overflow-y: auto;     /* 内容过长时纵向滚动 */
+	max-height: 450px;
+}
+
+/* 目录项 */
+.toc-list li {
+	padding: 8px 0;
+	border-bottom: 1px dashed #e8d5b7;
+}
+
+.toc-list li a {
+	display: block;
+	color: #555;
+	font-size: 14px;
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.toc-list li a:hover {
+	color: #D79F52;
+}
+
+/* 当前阅读章节高亮：加粗 + 左侧竖线 */
+.toc-list li a.toc-active {
+	color: #D79F52;
+	font-weight: bold;
+	padding-left: 8px;
+	border-left: 3px solid #D79F52;
+}
+
+/* ---------- 10. 下载页 ---------- */
+/* 全宽内容容器（替代 #youlan，用于分类页 / 作者页 / 下载页） */
+#zhuLan {
+	margin-left: 35px;
+	margin-top: 14px;
+	margin-right: 35px;
+	border-radius: 10px;
+	background-color: #FFE7C5;
+	padding: 5px;
+	padding-bottom: 60px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #FDC06B;
+	height: auto;
+}
+
+/* ---------- 10. 下载页：网盘资源卡片网格 ---------- */
+/* 卡片 flex 容器：3 列居中网格 */
+.xiaZaiRongQi {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 25px;
+	padding: 30px 30px 40px;
+}
+
+/* 资源卡片 */
+.xiaZaiKaPian {
+	width: 300px;
+	background-color: #FFFAEC;
+	border: 2px solid #e0c88e;
+	border-radius: 12px;
+	padding: 24px 20px;
+	text-align: center;
+	transition: all 0.3s;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.xiaZaiKaPian:hover {
+	border-color: #D79F52;
+	transform: translateY(-4px);
+	box-shadow: 0 6px 16px rgba(215, 159, 82, 0.25);
+}
+
+/* 卡片图标 */
+.kaPianTuBiao {
+	font-size: 38px;
+	margin-bottom: 10px;
+}
+
+/* 卡片标题 */
+.kaPianBiaoTi {
+	font-size: 17px;
+	font-weight: bold;
+	color: #333;
+	margin: 0 0 10px;
+}
+
+/* 卡片描述 */
+.kaPianMiaoShu {
+	font-size: 13px;
+	color: #888;
+	margin: 0 0 16px;
+	line-height: 1.5;
+	flex-grow: 1;
+}
+
+/* 网盘标签 */
+.wangPanBiaoQian {
+	display: inline-block;
+	padding: 3px 12px;
+	background-color: #f9cd90;
+	border-radius: 12px;
+	font-size: 12px;
+	color: #666;
+	margin-bottom: 14px;
+}
+
+/* 获取资源按钮 */
+.xiaZaiLianJie {
+	display: inline-block;
+	padding: 8px 32px;
+	background: linear-gradient(135deg, #f9cd90, #FDC06B);
+	color: #333;
+	border: none;
+	border-radius: 20px;
+	text-decoration: none;
+	font-size: 14px;
+	font-weight: bold;
+	transition: all 0.2s;
+}
+
+.xiaZaiLianJie:hover {
+	background: linear-gradient(135deg, #D79F52, #e8a040);
+	color: #fff;
+	box-shadow: 0 3px 10px rgba(215, 159, 82, 0.4);
+}
+
+/* ---------- 下载链接弹窗 ---------- */
+/* 全屏遮罩：默认隐藏，xianShi 类触发出现 */
+.moTaiZhao {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	z-index: 1000;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s, visibility 0.2s;
+}
+
+.moTaiZhao--xianShi {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* 弹窗本体 */
+.moTaiChuang {
+	background: #FFFAEC;
+	border-radius: 12px;
+	width: 420px;
+	max-width: 92vw;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+	overflow: hidden;
+}
+
+/* 弹窗标题栏 */
+.moTaiBiaoTou {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 18px;
+	background: #f9cd90;
+}
+
+.moTaiBiaoTi {
+	font-size: 16px;
+	font-weight: bold;
+	color: #333;
+}
+
+.moTaiGuanBi {
+	font-size: 24px;
+	color: #999;
+	cursor: pointer;
+	line-height: 1;
+	transition: color 0.2s;
+}
+
+.moTaiGuanBi:hover {
+	color: #333;
+}
+
+/* 弹窗内容区 */
+.moTaiNeiRong {
+	padding: 18px;
+	max-height: 55vh;
+	overflow-y: auto;
+}
+
+/* 链接行 */
+.lianJieHang {
+	padding: 10px 0;
+	border-bottom: 1px dashed #e8d5a8;
+}
+
+.lianJieHang:last-child {
+	border-bottom: none;
+}
+
+.lianJieBiaoQian {
+	display: block;
+	font-size: 12px;
+	color: #888;
+	margin-bottom: 3px;
+}
+
+.lianJieZhi {
+	font-size: 13px;
+	color: #555;
+	word-break: break-all;
+}
+
+/* ---------- 11. 分类页 ---------- */
+/* 分类卡片 flex 布局容器 */
+.fenLeiRongQi {
+	display: flex;
+	flex-wrap: wrap;          /* 换行 */
+	justify-content: center;  /* 水平居中 */
+	gap: 30px;
+	padding: 40px 20px;
+}
+
+/* 分类卡片 */
+.fenLeiKaPian {
+	width: 220px;
+	height: 160px;
+	background-color: #FFFAEC;
+	border: 3px solid #D79F52;
+	border-radius: 15px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+/* 悬停：上浮 + 投影效果 */
+.fenLeiKaPian:hover {
+	background-color: #f9cd90;
+	transform: translateY(-5px);
+	box-shadow: 0 5px 15px rgba(215, 159, 82, 0.4);
+}
+
+/* 分类名称 */
+.fenLeiKaPian .fenLeiMingCheng {
+	font-size: 22px;
+	font-weight: bold;
+	color: #333333;
+	margin-bottom: 10px;
+}
+
+/* 分类文章数量 */
+.fenLeiKaPian .fenLeiShuLiang {
+	font-size: 14px;
+	color: #D79F52;
+}
+
+/* ---------- 12. 作者页 ---------- */
+/* 作者信息卡片容器 */
+.zuoZheKaPian {
+	max-width: 600px;
+	margin: 40px auto;
+	background-color: #FFFAEC;
+	border: 3px solid #D79F52;
+	border-radius: 15px;
+	padding: 40px;
+	text-align: center;
+}
+
+/* 头像：圆形裁剪 */
+.zuoZheTouXiang {
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	border: 3px solid #f9cd90;
+	object-fit: cover;  /* 保证图片不变形填充 */
+	margin-bottom: 20px;
+}
+
+/* 作者昵称 */
+.zuoZheMingZi {
+	font-size: 28px;
+	font-weight: bold;
+	color: #333333;
+	margin-bottom: 10px;
+}
+
+/* 作者简介 */
+.zuoZheMiaoShu {
+	font-size: 16px;
+	color: #666666;
+	line-height: 1.8;
+	margin-bottom: 20px;
+}
+
+/* 技能标签 flex 容器 */
+.biaoQianRongQi {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+/* 单个技能标签：圆角药丸样式 */
+.biaoQian {
+	display: inline-block;
+	background-color: #f9cd90;
+	color: #333333;
+	padding: 5px 15px;
+	border-radius: 20px;
+	font-size: 14px;
+}
+
+/* 联系方式 */
+.zuoZheLianXi {
+	font-size: 14px;
+	color: #D79F52;
+}
+
+.zuoZheLianXi p {
+	margin: 5px 0;
+	text-align: center;
+}
+
+/* ============================================================
+ *  移动端适配 —— 屏幕宽度 ≤ 768px 时生效，PC 布局不受影响
+ * ============================================================ */
+@media screen and (max-width: 768px) {
+
+	/* ---------- 页面基座：Grid 降级为块级单列 ---------- */
+	body {
+		display: block;
+		margin: 5px 2px;
+		border-width: 2px;
+		border-radius: 8px;
+	}
+
+	/* ---------- 导航栏：居中 + 去掉左侧大缩进 ---------- */
+	ul.nav {
+		padding-left: 0;
+		text-align: center;
+	}
+
+	li.nav {
+		padding: 0 10px;
+		border: none;
+		font-size: 14px;
+	}
+
+	/* ---------- 左侧侧边栏：全宽，不 sticky，放内容上方 ---------- */
+	#zuolan {
+		grid-column: auto;
+		grid-row: auto;
+		position: static;
+		width: auto;
+		height: auto;
+		min-height: 200px;
+		margin: 8px;
+		border-radius: 10px;
+		box-shadow: inset 0 0 0 4px #f9cd90, inset 0 0 0 5px #6BA5A5;
+	}
+
+	/* 侧边栏：标题装饰线缩小 */
+	.ceLanBiaoTou {
+		font-size: 16px;
+		padding: 10px 0 8px;
+	}
+
+	.ceLanBiaoTou::after {
+		height: 2px;
+		margin: 4px auto 0;
+	}
+
+	/* 侧边栏：公告条目博主信息紧凑排布 */
+	.gongGaoItem {
+		padding: 8px 0;
+	}
+
+	.gongGaoItem a {
+		font-size: 13px;
+	}
+
+	.ceLanJianJie {
+		padding: 10px 15px;
+		margin: 10px 15px 0;
+	}
+
+	.ceLanJianJie p {
+		font-size: 12px;
+	}
+
+	.ceLanJianJie::before {
+		height: 2px;
+		margin: 0 auto 6px;
+	}
+
+	/* ---------- 右侧内容区：全宽 ---------- */
+	#youlan {
+		grid-column: auto;
+		grid-row: auto;
+		width: auto;
+		margin: 8px;
+		float: none;
+		display: block;
+	}
+
+	/* 搜索栏：窄屏紧凑 */
+	.souSuoRongQi {
+		margin: 12px 10px 5px;
+		gap: 6px;
+	}
+
+	.souSuoShuRuBox {
+		max-width: none;
+	}
+
+	.souSuoShuRu {
+		font-size: 13px;
+		padding: 8px 30px 8px 12px;
+	}
+
+	.souSuoQingChu {
+		right: 4px;
+		font-size: 16px;
+	}
+
+	.souSuoAnNiu {
+		width: 34px;
+		height: 34px;
+		font-size: 14px;
+	}
+
+	.souSuoXiaLa {
+		max-height: 180px;
+	}
+
+	.souSuoHouXuan {
+		font-size: 13px;
+		padding: 7px 12px;
+	}
+
+	.souSuoShangXiaWen {
+		font-size: 11px;
+	}
+
+	/* ---------- 全宽容器（分类/作者/下载页）---------- */
+	#zhuLan {
+		margin: 8px;
+	}
+
+	/* ---------- 文章卡片：缩减边距 ---------- */
+	.wenZhang {
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-top: 15px;
+		min-height: auto;
+	}
+
+	/* ---------- 分页按钮：缩小 + 允许换行 ---------- */
+	.fenYeBtn {
+		padding: 6px 10px;
+		font-size: 12px;
+		margin: 3px;
+	}
+
+	.fenYeRongQi {
+		padding: 10px 5px;
+	}
+
+	.fenYeTiaoZhuan {
+		width: 34px;
+		font-size: 12px;
+		padding: 3px 4px;
+	}
+
+	/* ---------- 文章详情页：全宽正文 ---------- */
+	.articleNeiRong {
+		padding: 10px 15px;
+	}
+
+	.articleNeiRong p {
+		font-size: 15px;
+	}
+
+	/* ---------- TOC 目录：上方折叠显示 ---------- */
+	.toc-list {
+		max-height: 200px;
+	}
+
+	.muLuBiaoTou {
+		font-size: 16px;
+		padding: 10px 0 8px;
+	}
+
+	/* ---------- 下载页：卡片全宽紧凑排列 ---------- */
+	.xiaZaiRongQi {
+		padding: 20px 10px;
+		gap: 15px;
+	}
+
+	.xiaZaiKaPian {
+		width: 100%;
+		max-width: 360px;
+		padding: 18px 15px;
+	}
+
+	.kaPianTuBiao {
+		font-size: 30px;
+		margin-bottom: 8px;
+	}
+
+	.kaPianBiaoTi {
+		font-size: 15px;
+		margin-bottom: 6px;
+	}
+
+	.kaPianMiaoShu {
+		font-size: 12px;
+		margin-bottom: 12px;
+	}
+
+	.wangPanBiaoQian {
+		font-size: 11px;
+		padding: 2px 10px;
+		margin-bottom: 12px;
+	}
+
+	.xiaZaiLianJie {
+		font-size: 13px;
+		padding: 6px 24px;
+	}
+
+	/* 弹窗：全宽留边 */
+	.moTaiChuang {
+		width: auto;
+		margin: 0 10px;
+	}
+
+	.moTaiBiaoTou {
+		padding: 10px 14px;
+	}
+
+	.moTaiBiaoTi {
+		font-size: 15px;
+	}
+
+	.moTaiNeiRong {
+		padding: 14px;
+	}
+
+	.lianJieHang {
+		padding: 8px 0;
+	}
+
+	.lianJieZhi {
+		font-size: 12px;
+	}
+
+	/* ---------- 分类页：卡片全宽 ---------- */
+	.fenLeiRongQi {
+		padding: 20px 10px;
+		gap: 15px;
+	}
+
+	.fenLeiKaPian {
+		width: 100%;
+		max-width: 320px;
+		height: auto;
+		min-height: 100px;
+		padding: 15px;
+	}
+
+	/* ---------- 作者页：卡片全宽 + 头像缩小 ---------- */
+	.zuoZheKaPian {
+		margin: 15px 8px;
+		padding: 20px;
+	}
+
+	.zuoZheTouXiang {
+		width: 80px;
+		height: 80px;
+	}
+
+	.zuoZheMingZi {
+		font-size: 22px;
+	}
+
+	.zuoZheMiaoShu {
+		font-size: 14px;
+		line-height: 1.6;
+	}
+
+	.biaoQian {
+		font-size: 12px;
+		padding: 4px 10px;
+	}
+
+	/* ---------- 底部版权：缩小 ---------- */
+	footer {
+		font-size: 12px;
+		padding: 15px 5px;
+	}
+}
