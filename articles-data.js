@@ -62,4 +62,8 @@ var uniBlogData = [
 		{ heading: "一、标题一", body: "部分一内容实例",},
 		{ heading: "二、标题二", body: "部分二内容实例"}
 	] }
+	{ id: 24, title: "新建分类试验", date: "2026-07-29", category: "分类实例", summary:"文章简介试验字句。", content: [
+		{ heading: "一、标题一", body: "部分一内容实例",},
+		{ heading: "二、标题二", body: "部分二内容实例"}
+	] }
 ];
