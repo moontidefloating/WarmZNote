@@ -58,7 +58,7 @@ var uniBlogData = [
 		{ heading: "一、HTTP 的局限", body: "传统 HTTP 是请求-响应模式，客户端不发请求服务器就无法推送数据。早期的轮询方案（定时发请求）既低效又浪费资源，长轮询虽然有所改进，但本质上仍是一问一答。" },
 		{ heading: "二、WebSocket 握手", body: "WebSocket 通过一次 HTTP 升级握手建立持久连接，之后双方可以在任意时刻互相发送消息，无需等待对方请求。Socket.IO 等库在浏览器不支持时自动降级为长轮询，保证兼容性。" }
 	] },
-	{ id: 24, title: "新建分类试验", date: "2026-07-29", category: "自定义分类实例", summary:"文章简介试验字句。", content: [
+	{ id: 24, title: "新建分类试验", date: "2026-07-29", category: "分类实例", summary:"文章简介试验字句。", content: [
 		{ heading: "一、标题一", body: "部分一内容实例",},
 		{ heading: "二、标题二", body: "部分二内容实例"}
 	] }
