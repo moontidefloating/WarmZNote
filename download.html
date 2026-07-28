@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>温知小筑-资源下载</title>
+		<link rel="stylesheet" href="123.css" />
+		<link rel="icon" type="image/png" href="logo.png" />
+	</head>
+	<body>
+		<!-- ====== 顶部导航栏 ====== -->
+		<header>
+			<nav>
+				<ul class="nav">
+					<li class="nav"><a href="./index.html">首页</a></li>
+					<li class="nav"><a href="category.html">分类</a></li>
+					<li class="nav"><a href="author.html">作者</a></li>
+					<li class="nav"><a href="download.html">下载</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- ====== 资源分享区（卡片网格布局，网盘链接分享） ====== -->
+		<article id="zhuLan">
+			<h2 class="pageTitle" style="text-align:center; color:#333; margin-top:30px;">资 源 分 享</h2>
+
+			<div class="xiaZaiRongQi">
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">📚</div>
+					<h3 class="kaPianBiaoTi">前端开发电子书合集</h3>
+					<p class="kaPianMiaoShu">JavaScript 高级程序设计、CSS 权威指南、Vue / React 实战等经典书籍 PDF</p>
+					<span class="wangPanBiaoQian">夸克网盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">🛠️</div>
+					<h3 class="kaPianBiaoTi">VS Code 高效插件包</h3>
+					<p class="kaPianMiaoShu">20+ 必备插件合集与 settings.json 配置文件，开箱即用</p>
+					<span class="wangPanBiaoQian">百度网盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">🎬</div>
+					<h3 class="kaPianBiaoTi">编程视频教程合集</h3>
+					<p class="kaPianMiaoShu">前端入门到进阶全套视频，涵盖 HTML / CSS / JS / Node.js</p>
+					<span class="wangPanBiaoQian">夸克网盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">🎨</div>
+					<h3 class="kaPianBiaoTi">网页设计素材库</h3>
+					<p class="kaPianMiaoShu">图标库、中英文字体包、配色方案与 UI 组件设计稿</p>
+					<span class="wangPanBiaoQian">阿里云盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">📝</div>
+					<h3 class="kaPianBiaoTi">PPT 演讲模板合集</h3>
+					<p class="kaPianMiaoShu">程序员述职汇报、技术答辩、项目路演精美模板打包</p>
+					<span class="wangPanBiaoQian">夸克网盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+
+				<section class="xiaZaiKaPian">
+					<div class="kaPianTuBiao">💻</div>
+					<h3 class="kaPianBiaoTi">开源项目源码包</h3>
+					<p class="kaPianMiaoShu">精选 GitHub 高星项目源码合集，适合学习参考与二次开发</p>
+					<span class="wangPanBiaoQian">百度网盘</span>
+					<a class="xiaZaiLianJie" href="#">获取资源</a>
+				</section>
+			</div>
+		</article>
+
+		<!-- ====== 底部版权信息 ====== -->
+		<footer>
+			<section>
+				<p><small><em>仅供学习使用 | © 2026<br />素材来源于网络，如有侵权请联系<br />moontidefloating@gmail.com</em></small></p>
+			</section>
+		</footer>
+
+		<!-- ====== 下载链接弹窗遮罩 ====== -->
+		<div class="moTaiZhao" id="linkModal">
+			<div class="moTaiChuang">
+				<div class="moTaiBiaoTou">
+					<span class="moTaiBiaoTi"></span>
+					<span class="moTaiGuanBi">&times;</span>
+				</div>
+				<div class="moTaiNeiRong" id="modalContent"></div>
+			</div>
+		</div>
+
+		<!-- ====== 弹窗逻辑：事件委托 + 卡片链接数据 ====== -->
+		<script>
+		(function () {
+			var modal = document.getElementById('linkModal');
+			var title = modal.querySelector('.moTaiBiaoTi');
+			var content = document.getElementById('modalContent');
+			var closeBtn = modal.querySelector('.moTaiGuanBi');
+
+			/* 每张卡片的下载链接数据，按卡片在页面中的顺序 */
+			var linkData = [
+				{
+					title: '前端开发电子书合集',
+					links: [
+						{ label: '夸克网盘', value: 'https://platform.dsfdsek.com/usage' },
+						{ label: '备用链接', value: 'https://pan.quark.cn/s/xxxxxxxx' },
+						{ label: '提取码',    value: 'abcd' }
+					]
+				},
+				{
+					title: 'VS Code 高效插件包',
+					links: [
+						{ label: '百度网盘', value: 'https://pan.baidu.com/s/xxxxxxxx' },
+						{ label: '提取码',    value: 'efgh' }
+					]
+				},
+				{
+					title: '编程视频教程合集',
+					links: [
+						{ label: '夸克网盘', value: 'https://pan.quark.cn/s/xxxxxxxx' },
+						{ label: '备用链接', value: 'https://platform.dsfdsek.com/usage' },
+						{ label: '提取码',    value: 'ijkl' }
+					]
+				},
+				{
+					title: '网页设计素材库',
+					links: [
+						{ label: '阿里云盘', value: 'https://www.alipan.com/s/xxxxxxxx' },
+						{ label: '提取码',    value: 'mnop' }
+					]
+				},
+				{
+					title: 'PPT 演讲模板合集',
+					links: [
+						{ label: '夸克网盘', value: 'https://pan.quark.cn/s/xxxxxxxx' },
+						{ label: '备用链接', value: 'https://platform.dsfdsek.com/usage' },
+						{ label: '提取码',    value: 'qrst' }
+					]
+				},
+				{
+					title: '开源项目源码包',
+					links: [
+						{ label: '百度网盘', value: 'https://pan.baidu.com/s/xxxxxxxx' },
+						{ label: 'GitHub',   value: 'https://github.com/xxxxxxxx' },
+						{ label: '提取码',    value: 'uvwx' }
+					]
+				}
+			];
+
+			function open(index) {
+				var data = linkData[index];
+				title.textContent = data.title;
+				content.innerHTML = data.links.map(function (item) {
+					return '<div class="lianJieHang">' +
+						'<span class="lianJieBiaoQian">' + item.label + '</span>' +
+						'<span class="lianJieZhi">' + item.value + '</span>' +
+						'</div>';
+				}).join('');
+				modal.classList.add('moTaiZhao--xianShi');
+			}
+
+			function close() {
+				modal.classList.remove('moTaiZhao--xianShi');
+			}
+
+			/* 事件委托：捕获卡片容器内所有按钮点击 */
+			document.querySelector('.xiaZaiRongQi').addEventListener('click', function (e) {
+				var btn = e.target.closest('.xiaZaiLianJie');
+				if (!btn) return;
+				e.preventDefault();
+				var cards = document.querySelectorAll('.xiaZaiKaPian');
+				var card = btn.closest('.xiaZaiKaPian');
+				var index = Array.prototype.indexOf.call(cards, card);
+				if (index >= 0) open(index);
+			});
+
+			/* 点击关闭按钮 */
+			closeBtn.addEventListener('click', close);
+
+			/* 点击遮罩空白区域关闭 */
+			modal.addEventListener('click', function (e) {
+				if (e.target === modal) close();
+			});
+
+			/* ESC 键关闭 */
+			document.addEventListener('keydown', function (e) {
+				if (e.key === 'Escape') close();
+			});
+		})();
+		</script>
+	</body>
+</html>
