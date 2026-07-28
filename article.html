@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>温知小筑-文章</title>
+		<link rel="stylesheet" href="123.css" />
+		<link rel="icon" type="image/png" href="logo.png" />
+	</head>
+	<body>
+		<!-- ====== 顶部导航栏 ====== -->
+		<header>
+			<nav>
+				<ul class="nav">
+					<li class="nav"><a href="./index.html">首页</a></li>
+					<li class="nav"><a href="category.html">分类</a></li>
+					<li class="nav"><a href="author.html">作者</a></li>
+					<li class="nav"><a href="download.html">下载</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<!-- ====== 左侧 sticky 目录栏 ====== -->
+		<article id="zuolan">
+			<div class="muLuBiaoTou">目 录</div>
+			<!-- 目录列表由 JS 根据文章 content 数组自动生成 -->
+			<ul class="toc-list" id="tocList"></ul>
+		</article>
+
+		<!-- ====== 右侧文章正文区 ====== -->
+		<article id="youlan">
+			<!-- 文章标题、元信息、章节内容均由 JS 的 renderArticle() 动态填入 -->
+			<div class="articleNeiRong" id="articleContent"></div>
+		</article>
+
+		<!-- ====== 底部版权信息 ====== -->
+		<footer>
+			<section>
+				<p><small><em>仅供学习使用 | © 2026<br />素材来源于网络，如有侵权请联系<br />moontidefloating@gmail.com</em></small></p>
+			</section>
+		</footer>
+
+		<!-- ★ JS 数据 + 渲染逻辑：底部 defer 加载，避免阻塞 DOM 解析 -->
+		<script src="articles-data.js" defer></script>
+		<script src="main.js" defer></script>
+	</body>
+</html>
