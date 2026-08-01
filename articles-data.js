@@ -72,31 +72,5 @@ var uniBlogData = [
 		{ heading: "七、图片自适应原理", body: "为防止大图溢出容器，在 `123.css` 中增加了以下样式：\n\n```css\n.articleNeiRong img {\n  max-width: 100%;   /* 宽度绝不超过容器 */\n  height: auto;      /* 保持原始宽高比 */\n  display: block;    /* 让图片独占一行 */\n  margin: 20px auto; /* 上下留白 + 居中 */\n  border-radius: 6px;/* 圆角，视觉柔和 */\n}\n```\n\n核心是 `max-width: 100%` ——图片无论原始尺寸多大，最多只能撑到父容器的 100%，确保永不超出 `#youlan` 的边界。`height: auto` 保证等比缩放不变形，`display: block` 加 `margin: auto` 实现居中显示。" },
 		{ heading: "八、链接与分割线", body: "这里是一个[温知小筑首页](./index.html)的链接。你也可以链接外部：[GitHub](https://github.com)。\n\n---\n\n分割线上方的内容和下方的内容会被一条水平线隔开。" },
 		{ heading: "九、等同于直接写HTML", body: "因为渲染层用了 innerHTML，body 里也可以直接写 HTML 标签：\n\n<p><b>一段加粗 + 斜体文字，</b><i>再混搭一句斜体</i>，还有<code>行内代码</code>和<s>删除线</s>。</p>\n\n<ul><li>HTML 无序列表项一</li><li>HTML 列表项二<ul><li>嵌套子项！</li></ul></li><li>列表项三</li></ul>\n\n<p></p>\n\n<ol><li>有序列表第一步</li><li>第二步</li><li>第三步</li></ol>\n\n<blockquote>这是 HTML 引用块，同样有左侧竖线效果。</blockquote>\n\n<pre><code>// 这是 HTML 代码块\nfunction sayHi() {\n  console.log(\"Hello HTML!\");\n}\n</code></pre>\n\n<h3>用 &lt;h3&gt; 写的标题</h3>\n\n<p>带一张图片：</p>\n\n<img src=\"logo.png\" alt=\"Logo\" style=\"max-width:80%;\">\n\n<p>一个<a href=\"./index.html\">站内链接</a>，一个<a href=\"https://github.com\" target=\"_blank\">GitHub外部链接</a>。</p>\n\n<hr>\n\n<p>结论：body 既支持 <b>Markdown</b> 也支持 <b>原生 HTML</b>，两者可混用，非常灵活。</p>" }
-	] },
-	{ id: 26, title: "Linux包历史", date: "2026-08-01", category: "Linux应用实例及其注意事项", summary:"linux包得历史。", content: [
-		{ heading: "一、标题一", body: "<!--StartFragment--><html><head></head><body><p>Linux 中的软件包管理体系可以分为<strong>底层包管理工具</strong>和<strong>上层包管理工具</strong>。CentOS/RHEL 系和 Ubuntu/Debian 系对应关系如下：</p>
-层级 | CentOS / RHEL 系 | Ubuntu / Debian 系 | 作用
--- | -- | -- | --
-底层（Low-level） | rpm | dpkg | 直接安装 .rpm / .deb 包，负责文件复制、数据库记录、卸载等
-中层（依赖解析工具） | yum / dnf | apt | 自动解决依赖，从仓库下载软件
-上层（用户接口） | yum → dnf | apt-get / apt | 给管理员使用的软件管理命令
-
-<hr><h2>版本时间线</h2><h3>RedHat 系</h3><pre><code>rpm
- ↓
-yum
- ↓
-dnf
-</code></pre><p>大约：</p><pre><code>1997     rpm
-2003     yum
-2015     dnf
-</code></pre><h3>Debian 系</h3><pre><code>dpkg
- ↓
-apt
-</code></pre><p>大约：</p><pre><code>1994     dpkg
-1998     apt
-</code></pre><hr><p>所以你考试（Linux应用与开发技术）最应该记：</p><blockquote><p><strong>rpm 和 dpkg 是同一级，都是底层包管理；yum/dnf 和 apt 是同一级，都是高级包管理。</strong></p></blockquote><p>不要记成：</p><pre><code>rpm = yum
-dpkg = apt
-</code></pre><p>这是很多初学者容易混淆的地方。</p></body></html><!--EndFragment-->",},
-		{ heading: "二、标题二", body: "部分二内容实例"}
 	] }
 ];
